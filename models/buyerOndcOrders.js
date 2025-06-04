@@ -1,0 +1,90 @@
+const mongoose = require("mongoose");
+const { ondcOrdersStatus } = require("../Constants");
+
+const buyerOndcOrdersSchema = new mongoose.Schema(
+  {
+    context: { type: Object },
+    transactionId: { type: String },
+    messageId: { type: String },
+    userId: { type: mongoose.Schema.Types.ObjectId, ref: "Users" },
+    // providerId: { type: mongoose.Schema.Types.ObjectId, ref: 'buyerappseller' },
+    providerId: { type: String },
+    sellerDetails: { type: Object },
+    tracking: { type: Boolean, default: false },
+    trackingDetails: { type: Object, default: {} },
+    onUpdateDetails: { type: Object, default: {} },
+    billing: { type: Object },
+    // items: [orderItemSchema],
+    items: { type: Array },
+    quote: { type: Object },
+    fulfillments: { type: Array },
+    delivery: { type: Object },
+    deliveryCharges: { type: Number, default: 0 },
+    convenienceFee: { type: Number, default: 0 },
+    payment: { type: Object },
+    tags: { type: Array },
+    orderStatus: { type: String },
+    ondcOrderStatus: { type: String },
+    deliveryStatus: { type: String },
+    orderId: { type: String }, // our sytem order id
+    ondcOrderId: { type: String },
+    orderAmount: { type: Number, default: 0 },
+    razorPayOrderId: { type: String },
+    razorPayTransactionId: { type: String },
+    transactionFee: { type: String },
+    cancelReason: { type: Object },
+    cancelledBy: { type: String },
+    returnFFId: { type: String },
+    updatedFulfillments: { type: Array },
+    updatedItems: { type: Array },
+    returnStatus: { type: String },
+    returnReason: { type: String },
+    returnRequest: { type: Object },
+    isRefund: { type: Boolean, default: false },
+    refund: { type: Object },
+    createdAt: { type: Date, default: Date.now },
+    orderDeliveryStatusTracker: [
+      {
+        status: { type: String },
+        createdAt: { type: Date },
+      },
+    ],
+    refundData: { type: Array },
+    settlementData: {
+      date: { type: Date },
+      amount: { type: Number, required: true, default: 0 },
+      status: {
+        type: String,
+        default: "pending",
+        enum: ["pending", "completed", "rejected", "On Hold"],
+      },
+      remark: { type: String },
+      SettlementUTR: { type: String },
+    },
+    razorPayPaymentDetail: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "buyerRazorPayDetails",
+    },
+    razorPayPaymentType: { type: String },
+    bff: { type: Number, default: 0 },
+    isOfferApplied: { type: Boolean, default: false },
+    offerData: {
+      couponId: { type: mongoose.Schema.Types.ObjectId, ref: 'buyerappcoupons' },
+      perItemDiscount: { type: Number, default: 0 },
+      couponCode: { type: String, default: "" },
+      discountedValue: { type: Number, default: 0 }
+    },
+    actualRozarPayAmount: { type: Number, default: 0 },
+    landingSource: { type: String, default: "" },
+    ondcSellerNpFA: { type: Number, default: 0.0 },
+    ondcSellerFARefunded: { type: Number, default: 0.0 },
+    ondcSellerCurrentFA: { type: Number, default: 0.0 },
+    itemLevelFA: { type: Array },
+    referalDiscountValue: { type: Number, default: 0 },
+    creditsApplied: {type: Number, default: 0},
+    invoiceURL: {type: String, default: ""},
+    trackingUrl: {type: String, defualt: ""}
+  },
+  { timestamps: { updatedAt: true, createdAt: false } }
+);
+module.exports = mongoose.model("buyerondcorder", buyerOndcOrdersSchema);

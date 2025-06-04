@@ -1,0 +1,35 @@
+const mongoose = require("mongoose");
+
+const ondcIssuesSchema = new mongoose.Schema({
+    context: { type: Object },
+    orderId: { type: mongoose.Schema.Types.ObjectId, ref: 'OndcOrder' },
+    vendorId: { type: mongoose.Schema.Types.ObjectId, ref: 'Users' },
+    issueId: { type: String },
+    ondcOrderId: { type: String },
+    issueCategory: { type: String },
+    issueSubCategory: { type: String },
+    issueStatus: { type: String },
+    ticketStatus: { type: String },
+    issueType: { type: String },
+    issueAction: { type: Array },
+    issueItemCategory: { type: Array },
+    refundAmount: { type: String },
+    zohoTicketId: { type: String },
+    zohoTicketCreatedTime: { type: String },
+    rawObject: { type: Object },
+    zohoTicketModifiedDate: { type: String },
+    zohoRelayDate: { type: String },
+    typeOfresolution:{type:String},
+    resolution_provider: { type: Object },
+    resolution: { type: Object },
+    orderCategory: { type: String },
+    typeOfRespond: { type: String },
+    expire_resolution_time: { type: Date },
+    ZohoTicketCloserDate: { type: String },
+    ZohoTicketClassification: { type: String },
+    attachment: { type: String },
+    isLogistic: { type: Boolean },
+    kikoStatus:{ type: String ,default:"OPEN"},
+    notes:{ type: String ,default:""}
+}, { timestamps: true });
+module.exports = mongoose.model("OndcIssues", ondcIssuesSchema);
