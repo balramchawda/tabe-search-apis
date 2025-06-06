@@ -2114,7 +2114,7 @@ const onSearchSerial = async (req, res, callback) => {
               }
             }
           });
-          await createCustomGroup(providerData?.categories, savedFnBSeller._id);
+          // await createCustomGroup(providerData?.categories, savedFnBSeller._id);
           let t = 0;
           // while (t < iLen) {
           //   console.log(t,'t------>>>')
@@ -3269,9 +3269,10 @@ const onSearchSerial = async (req, res, callback) => {
                 if (
                   items[t]?.tags.find((tt) => tt.code === "type")?.list[0]
                     ?.value === "item" &&
-                  items[t]?.category_ids &&
-                  onSearchErrorObj?.error &&
-                  !Object.keys(onSearchErrorObj.error).length
+                  items[t]?.category_ids 
+                  // &&
+                  // onSearchErrorObj?.error &&
+                  // !Object.keys(onSearchErrorObj.error).length
                 ) {
                   try {
                     promises.push(
@@ -3281,9 +3282,10 @@ const onSearchSerial = async (req, res, callback) => {
                   }
                 } else if (
                   items[t]?.tags.find((tt) => tt.code === "type")?.list[0]
-                    ?.value === "customization" &&
-                  onSearchErrorObj?.error &&
-                  !Object.keys(onSearchErrorObj.error).length
+                    ?.value === "customization" 
+                  //   &&
+                  // onSearchErrorObj?.error &&
+                  // !Object.keys(onSearchErrorObj.error).length
                 ) {
                   try {
                     promises.push(
@@ -3292,9 +3294,10 @@ const onSearchSerial = async (req, res, callback) => {
                     console.log(error, "error,11111");
                   }
                 } else if (
-                  items[t]?.category_ids &&
-                  onSearchErrorObj?.error &&
-                  !Object.keys(onSearchErrorObj.error).length
+                  items[t]?.category_ids 
+                  // &&
+                  // onSearchErrorObj?.error &&
+                  // !Object.keys(onSearchErrorObj.error).length
                 ) {
                   try {
                     promises.push(

@@ -495,11 +495,11 @@ function checkContext(
   if (!data?.core_version || data?.core_version !== "1.2.0") {
     errObj.bpp_uri_err = `context.core_version should be 1.2.0`
   }
-  if (data.ttl && data.ttl != ondcConstants.RET_CONTEXT_TTL) {
-    {
-      errObj.ttl_err = `ttl = ${ondcConstants.RET_CONTEXT_TTL} as per the API Contract`
-    }
-  }
+//   if (data.ttl && data.ttl != ondcConstants.RET_CONTEXT_TTL) {
+//     // {
+//     //   errObj.ttl_err = `ttl = ${ondcConstants.RET_CONTEXT_TTL} as per the API Contract`
+//     // }
+//   }
   if (data.timestamp) {
     const date = data.timestamp
     const result = timestampCheck(date)
